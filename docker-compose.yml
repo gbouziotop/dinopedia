@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+    image: dinopedia
+    environment:
+      APP_DEBUG_MODE: "True"
+      POSTGRES_HOST: db
+      POSTGRES_PORT: 5432
+      POSTGRES_DB: dinopedia
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      SECRETS_STATIC_ROOT: "/usr/dinopedia/www/static"
+      SECRETS_MEDIA_ROOT: "/usr/dinopedia/www/media"
+      DJANGO_SETTINGS_MODULE: dinopedia.settings
+      PYTHONPATH: /usr/dinopedia/app
+    entrypoint: ""
+    command: "python dinopedia/manage.py runserver 0.0.0.0:8000"
+    ports:
+      - "8000:8000"
+      # debugger
+      - "55551:55551"
+    volumes:
+      - ./dinopedia:/usr/dinopedia/app/dinopedia
+      - ./requirements:/usr/dinopedia/app/requirements
+      - ./www:/usr/dinopedia/www
+    links:
+      - db
+    depends_on:
+      - db
+
+  db:
+    image: postgres:14-alpine
+    restart: always
+    environment:
+      POSTGRES_DB: dinopedia
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - postgresql-data:/var/lib/postgresql/data
+    ports:
+      - "5433:5433"
+
+  linter_py:
+    image: dinopedia_linter
+    build:
+      context: .
+      dockerfile: ./Dockerfile_flake8
+    command: sh ./flake.sh
+    volumes:
+      - .:/usr/dinopedia/
+
+volumes:
+  postgresql-data:
+    driver: local

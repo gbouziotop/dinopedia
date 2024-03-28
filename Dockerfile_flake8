@@ -1,0 +1,7 @@
+FROM python:3.10.2-slim
+
+RUN pip3 install --no-cache-dir --upgrade pep8 pep8-naming pylint flake8==5.0.4 flake8-coding flake8-import-order flake8_docstrings flake8-builtins flake8-quotes mypy mypy-extensions
+RUN rm -rf /tmp/* /var/tmp/* /root/.cache
+RUN apt-get -yq update && apt-get install -y git
+RUN git config --global --add safe.directory /usr/dinopedia
+WORKDIR /usr/dinopedia

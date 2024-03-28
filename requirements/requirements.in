@@ -1,0 +1,13 @@
+Django==4.1
+psycopg2-binary==2.9.6
+django-model-utils==4.3.1
+django-extensions==3.2.3
+django-colorfield==0.8.0
+Pillow==9.5.0
+factory-boy==3.2.1
+djangorestframework==3.14
+djangorestframework-jsonapi==6.0.0
+djangorestframework-jsonapi[django-filter]
+djangorestframework-jsonapi[django-polymorphic]
+djangorestframework-jsonapi[openapi]
+djangorestframework-simplejwt==5.2.2
