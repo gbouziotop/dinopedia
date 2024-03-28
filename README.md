@@ -22,4 +22,4 @@ Dinopedia is a web application for Dinosaur Aficionados, implemented in [Django 
 5. The test suite provided is implemented via the unittest framework and can be run by the command `make test_py`
 6. [Flake8](https://flake8.pycqa.org/en/latest/) linter has been used to verify code quality against each commit. It can be run via the command `make linter_py`
 
-A detailed guide to the API calls can be found in [APIGuide.md](https://github.com/gbouziotop/blob/main/APIGuide.md). file
+A detailed guide to the API calls can be found in [APIGuide.md](https://github.com/gbouziotop/dinopedia/blob/main/APIGuide.md). file
